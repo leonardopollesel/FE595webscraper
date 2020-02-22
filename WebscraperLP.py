@@ -7,9 +7,8 @@ import re
 
 
 # Function to call the website and get both name and purpose of the company
-def webscrap():
-    p = "http://18.207.92.139:8000/random_company"
-    page = requests.get(p)
+def webscrap(url):
+    page = requests.get(url)
     if page.status_code == 200:
         soup = BeautifulSoup(page.content, "html.parser")
         name = soup.find(text=re.compile("Name")).lstrip("nName: ")
@@ -25,7 +24,7 @@ end_data = pd.DataFrame(columns=["name", "purpose"], index=range(0, 50))
 
 # Cycle to make 50 requests to the website and save name and purpose to the table created above
 for i in range(0, 50):
-    end_data.iloc[i] = webscrap()
+    end_data.iloc[i] = webscrap("http://18.207.92.139:8000/random_company")
     time.sleep(0.5)
 
 # Save resulting table as .csv file
