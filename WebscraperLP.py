@@ -7,12 +7,12 @@ import re
 
 
 # Function to call the website and get both name and purpose of the company
-def webscrap(url):
-    page = requests.get(url)
+def webscrap(p):
+    page = requests.get(p)
     if page.status_code == 200:
         soup = BeautifulSoup(page.content, "html.parser")
-        name = soup.find(text=re.compile("Name")).lstrip("nName: ")
-        purpose = soup.find(text=re.compile("Purpose")).lstrip("pPurpose: ")
+        name = soup.find(text=re.compile("Name")).lstrip("nName:")
+        purpose = soup.find(text=re.compile("Purpose")).lstrip("pPurpose:")
         datasave = {"name": name, "purpose": purpose}
     else:
         print("Cannot Connect")
