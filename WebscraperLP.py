@@ -28,4 +28,4 @@ for i in range(0, 50):
     time.sleep(0.5)
 
 # Save resulting table as .csv file
-end_data.to_csv("companies")
+end_data.to_csv("companies.csv")
